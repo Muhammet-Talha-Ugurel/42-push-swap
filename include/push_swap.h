@@ -19,6 +19,8 @@
 #include "ft_printf.h"
 #include "libft.h"
 
+#define STACK_SIZE ((ac - 1) * sizeof(int32_t))
+
 typedef struct t_stack
 {
 	int32_t	*stack;
@@ -27,5 +29,19 @@ typedef struct t_stack
 
 void	sa(t_stack *a);
 void	sb(t_stack *b);
+void	ss(t_stack *a, t_stack *b);
+void	pa(t_stack *a, t_stack *b);
+void	pb(t_stack *b, t_stack *a);
+void	ra(t_stack *a);
+void	rb(t_stack *b);
+void	rr(t_stack *a, t_stack *b);
+void	rra(t_stack *a);
+void	rrb(t_stack *b);
+void	rrr(t_stack *a, t_stack *b);
+void	get_them_all(t_stack *a, char **av, int ac);
+void	print_stack(t_stack *a);
+void	print_stacks(t_stack *a, t_stack *b);
+void	move_up(t_stack *s);
+void	move_down(t_stack *s);
 
 #endif

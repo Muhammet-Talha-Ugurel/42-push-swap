@@ -43,5 +43,8 @@ void	print_stack(t_stack *a);
 void	print_stacks(t_stack *a, t_stack *b);
 void	move_up(t_stack *s);
 void	move_down(t_stack *s);
+void	two(t_stack *a);
+void	three(t_stack *a);
+int		check(t_stack *a);
 
 #endif

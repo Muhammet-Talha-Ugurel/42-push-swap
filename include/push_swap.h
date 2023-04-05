@@ -45,6 +45,11 @@ void	move_up(t_stack *s);
 void	move_down(t_stack *s);
 void	two(t_stack *a);
 void	three(t_stack *a);
+void	four(t_stack *a, t_stack *b);
+void	five(t_stack *a, t_stack *b);
+void	five_up_smallest(t_stack *a);
 int		check(t_stack *a);
+int		smallest(t_stack *a);
+int		biggest(t_stack *a);
 
 #endif

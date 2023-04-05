@@ -26,18 +26,14 @@ int	main(int ac, char **av)
 	a->stack = (int32_t *)malloc(STACK_SIZE);
 	b->stack = (int32_t *)malloc(STACK_SIZE);
 	get_them_all(a, av, ac);
-	ft_printf("--------------\n");
-	print_stacks(a, b);
 	if (ac == 3)
 		two(a);
 	if (ac == 4)
 		three(a);
 	if (ac == 5)
-		//		four(a, b);
+		four(a, b);
 	if (ac == 6)
-		//	five(a, b);
-	ft_printf("--------------\n");
-	print_stacks(a, b);
+		five(a, b);
 }
 
 void	two(t_stack *a)
@@ -48,7 +44,7 @@ void	two(t_stack *a)
 
 void	three(t_stack *a)
 {
-	check(a)
+	check(a);
 	if (a->stack[0] < a->stack[1])
 	{
 		if (a->stack[0] > a->stack[2])
@@ -73,6 +69,106 @@ void	three(t_stack *a)
 	}
 }
 
+void	four(t_stack *a, t_stack *b)
+{
+	check(a);
+	if (smallest(a) == 1)
+	{
+		ra(a);
+		check(a);
+	}
+	else if (smallest(a) == 2)
+	{
+		rra(a);
+		check(a);
+	}
+	else if (smallest(a) == 3)
+	{
+		rra(a);
+		check(a);
+	}
+	pb(b, a);
+	three(a);
+	pa(a, b);
+}
+
+void	five(t_stack *a, t_stack *b)
+{
+	five_up_smallest(a);
+	pb(b, a);
+	four(a, b);
+	pa(a, b);
+}
+
+void	five_up_smallest(t_stack *a)
+{
+	check(a);
+	if (smallest(a) == 1)
+	{
+		ra(a);
+		check(a);
+	}
+	else if (smallest(a) == 2)
+	{
+		ra(a);
+		ra(a);
+		check(a);
+	}
+	else if (smallest(a) == 3)
+	{
+		rra(a);
+		rra(a);
+		check(a);
+	}
+	else if (smallest(a) == 4)
+	{
+		rra(a);
+		check(a);
+	}
+}
+
+int	smallest(t_stack *a)
+{
+	int		i;
+	int		index;
+	int		fornow;
+
+	i = 1;
+	index = 0;
+	fornow = a->stack[0];
+	while (a->size - 1 >= i)
+	{
+		if (fornow > a->stack[i])
+		{
+			fornow = a->stack[i];
+			index = i;
+		}
+		i++;
+	}
+	return (index);
+}
+
+int	biggest(t_stack *a)
+{
+	int		i;
+	int		index;
+	int		fornow;
+
+	i = 1;
+	index = a->size - 1;
+	fornow = a->stack[0];
+	while (a->size - 1 >= i)
+	{
+		if (fornow < a->stack[i])
+		{
+			fornow = a->stack[i];
+			index = i;
+		}
+		i++;
+	}
+	return (index);
+}
+
 int	check(t_stack *a)
 {
 	int		i;
@@ -87,12 +183,6 @@ int	check(t_stack *a)
 		i++;
 	}
 	if (flag == 1)
-		exit (1);
-	return (0);
+		return (0);
+	exit (1);
 }
-//void	four(t_stack *a, t_stack *b)
-//{
-//}
-//void	five(t_stack *a, t_stack *b)
-//{
-//}

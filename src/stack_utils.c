@@ -78,3 +78,63 @@ void	move_down(t_stack *s)
 		i++;
 	}
 }
+
+int	smallest(t_stack *a)
+{
+	int		i;
+	int		index;
+	int		fornow;
+
+	i = 1;
+	index = 0;
+	fornow = a->stack[0];
+	while (a->size - 1 >= i)
+	{
+		if (fornow > a->stack[i])
+		{
+			fornow = a->stack[i];
+			index = i;
+		}
+		i++;
+	}
+	return (index);
+}
+
+int	biggest(t_stack *a)
+{
+	int		i;
+	int		index;
+	int		fornow;
+
+	i = 1;
+	index = a->size - 1;
+	fornow = a->stack[0];
+	while (a->size - 1 >= i)
+	{
+		if (fornow < a->stack[i])
+		{
+			fornow = a->stack[i];
+			index = i;
+		}
+		i++;
+	}
+	return (index);
+}
+
+int	check(t_stack *a)
+{
+	int		i;
+	int		flag;
+
+	i = 0;
+	flag = 0;
+	while (a->size - 2 >= i)
+	{
+		if (a->stack[i] > a->stack[i + 1])
+			flag = 1;
+		i++;
+	}
+	if (flag == 1)
+		return (0);
+	exit (1);
+}

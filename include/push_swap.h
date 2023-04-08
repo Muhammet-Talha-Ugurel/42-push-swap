@@ -15,6 +15,7 @@
 
 #include <unistd.h>
 #include <stdint.h>
+#include <stdbool.h>
 #include "get_next_line.h"
 #include "ft_printf.h"
 #include "libft.h"
@@ -51,5 +52,13 @@ void	five_up_smallest(t_stack *a);
 int		check(t_stack *a);
 int		smallest(t_stack *a);
 int		biggest(t_stack *a);
+void	quick_sort(t_stack *a, t_stack *b, int ac);
+void	push_a_stack(t_stack *a, t_stack *b, t_stack *sorted, int pivot);
+void	push_b_stack(t_stack *a, t_stack *b, t_stack *sorted, int pivot);
+int		chose_pivot_a(t_stack *a, t_stack *sorted);
+int		chose_pivot_b(t_stack *b, t_stack *sorted);
+int		is_it_sorted(int n, t_stack *sorted);
+int		sorted_a(t_stack *a);
+int		sorted_b(t_stack *b);
 
 #endif

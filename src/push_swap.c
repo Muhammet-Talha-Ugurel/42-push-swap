@@ -34,4 +34,7 @@ int	main(int ac, char **av)
 		four(a, b);
 	if (ac == 6)
 		five(a, b);
+	if (ac >= 7)
+		quick_sort(a, b, ac);
+	return (0);
 }

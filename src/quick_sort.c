@@ -36,8 +36,17 @@ void	push_a_stack(t_stack *a, t_stack *b, t_stack *sorted, int pivot)
 	bool	is_pivot_last;
 
 	get_it_back = 0;
-	while (a->size != 0 || !sorted_a(a))
+	while (a->size != 0)
 	{
+		if (sorted_b(b) && sorted_a(a))
+		{
+			if (b->size != 0)
+			{
+				pa(a, b);
+			}
+		}
+		else if (sorted_a(a))
+			break ;
 		pivot = chose_pivot_a(a, sorted);
 		if (pivot == a->stack[a->size - 1])
 			is_pivot_last = true;
@@ -50,7 +59,19 @@ void	push_a_stack(t_stack *a, t_stack *b, t_stack *sorted, int pivot)
 				if (a->stack[0] < pivot)
 					pb(b, a);
 				else if (a->stack[0] > pivot)
-					ra(a);
+				{
+					if (b->size > 1)
+					{
+						if (b->stack[0] < b->stack[b->size - 1])
+						{
+							rr(a, b);
+						}
+						else
+							ra(a);
+					}
+					else
+						ra(a);
+				}
 			}
 			else if (!is_pivot_last)
 			{
@@ -58,8 +79,7 @@ void	push_a_stack(t_stack *a, t_stack *b, t_stack *sorted, int pivot)
 					pb(b, a);
 				else if (a->stack[0] > pivot)
 				{
-					pb(b, a);
-					rb(b);
+					ra(a);
 					get_it_back++;
 				}
 			}
@@ -71,17 +91,9 @@ void	push_a_stack(t_stack *a, t_stack *b, t_stack *sorted, int pivot)
 		{
 			while (get_it_back != 0)
 			{
-				rrb(b);
-				pa(a, b);
+				rra(a);
 				get_it_back--;
 			}
-		}
-	}
-	if (a->size != 0)
-	{
-		while (a->size != 0)
-		{
-			pb(b, a);
 		}
 	}
 }
@@ -92,8 +104,17 @@ void	push_b_stack(t_stack *a, t_stack *b, t_stack *sorted, int pivot)
 	bool	is_pivot_last;
 
 	get_it_back = 0;
-	while (b->size != 0 || !sorted_b(b))
+	while (b->size != 0)
 	{
+		if (sorted_b(b) && sorted_a(a))
+		{
+			if (b->size != 0)
+			{
+				pa(a, b);
+			}
+		}
+		else if (sorted_b(b))
+			break ;
 		pivot = chose_pivot_b(b, sorted);
 		if (pivot == b->stack[b->size - 1])
 			is_pivot_last = true;
@@ -104,7 +125,19 @@ void	push_b_stack(t_stack *a, t_stack *b, t_stack *sorted, int pivot)
 			if (is_pivot_last)
 			{
 				if (b->stack[0] < pivot)
-					rb(b);
+				{
+					if (a->size > 1)
+					{
+						if (a->stack[0] > a->stack[a->size - 1])
+						{
+							rr(a, b);
+						}
+						else
+							rb(b);
+					}
+					else
+						rb(b);
+				}
 				else if (b->stack[0] > pivot)
 					pa(a, b);
 			}
@@ -112,7 +145,17 @@ void	push_b_stack(t_stack *a, t_stack *b, t_stack *sorted, int pivot)
 			{
 				if (b->stack[0] < pivot)
 				{
-					rb(b);
+					if (a->size > 1)
+					{
+						if (a->stack[0] > a->stack[a->size - 1])
+						{
+							rr(a, b);
+						}
+						else
+							rb(b);
+					}
+					else
+						rb(b);
 					get_it_back++;
 				}
 				else if (b->stack[0] > pivot)
@@ -129,13 +172,6 @@ void	push_b_stack(t_stack *a, t_stack *b, t_stack *sorted, int pivot)
 				rrb(b);
 				get_it_back--;
 			}
-		}
-	}
-	if (b->size != 0)
-	{
-		while (b->size != 0)
-		{
-			pa(a, b);
 		}
 	}
 }

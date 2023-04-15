@@ -57,7 +57,6 @@ void	push_a_stack(t_stack *a, t_stack *b, t_stack *sorted, int pivot);
 void	push_b_stack(t_stack *a, t_stack *b, t_stack *sorted, int pivot);
 int		chose_pivot_a(t_stack *a, t_stack *sorted);
 int		chose_pivot_b(t_stack *b, t_stack *sorted);
-int	chose_avarage_pivot(t_stack *a, t_stack *sorted);
 int		is_it_sorted(int n, t_stack *sorted);
 int		sorted_a(t_stack *a);
 int		sorted_b(t_stack *b);

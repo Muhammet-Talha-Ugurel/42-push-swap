@@ -36,8 +36,10 @@ void	push_a_stack(t_stack *a, t_stack *b, t_stack *sorted, int pivot)
 	bool	is_pivot_last;
 
 	get_it_back = 0;
-	while (a->size != 0 || !sorted_a(a))
+	while (a->size != 0)
 	{
+		if (sorted_a(a))
+			break ;
 		pivot = chose_pivot_a(a, sorted);
 		if (pivot == a->stack[a->size - 1])
 			is_pivot_last = true;
@@ -58,8 +60,7 @@ void	push_a_stack(t_stack *a, t_stack *b, t_stack *sorted, int pivot)
 					pb(b, a);
 				else if (a->stack[0] > pivot)
 				{
-					pb(b, a);
-					rb(b);
+					ra(a);
 					get_it_back++;
 				}
 			}
@@ -71,17 +72,9 @@ void	push_a_stack(t_stack *a, t_stack *b, t_stack *sorted, int pivot)
 		{
 			while (get_it_back != 0)
 			{
-				rrb(b);
-				pa(a, b);
+				rra(a);
 				get_it_back--;
 			}
-		}
-	}
-	if (a->size != 0)
-	{
-		while (a->size != 0)
-		{
-			pb(b, a);
 		}
 	}
 }
@@ -92,8 +85,10 @@ void	push_b_stack(t_stack *a, t_stack *b, t_stack *sorted, int pivot)
 	bool	is_pivot_last;
 
 	get_it_back = 0;
-	while (b->size != 0 || !sorted_b(b))
+	while (b->size != 0)
 	{
+		if (!sorted_a(a) && sorted_b(b))
+			break ;
 		pivot = chose_pivot_b(b, sorted);
 		if (pivot == b->stack[b->size - 1])
 			is_pivot_last = true;
@@ -131,13 +126,49 @@ void	push_b_stack(t_stack *a, t_stack *b, t_stack *sorted, int pivot)
 			}
 		}
 	}
-	if (b->size != 0)
+}
+
+int	distance(int num)
+{
+	if (num < 0)
+		num = num * -1;
+	return (num);
+}
+
+int	find_mid(t_stack *a)
+{
+	int	i;
+	int	j;
+	int	mid;
+	int	mid_diff;
+	int	small;
+	int	big;
+
+	i = 0;
+	j = 0;
+	mid = 0;
+	mid_diff = 2147483647;
+	while (a->size > i)
 	{
-		while (b->size != 0)
+		big = 0;
+		small = 0; 
+		while (a->size > j)
 		{
-			pa(a, b);
+			if (a->stack[j] < a->stack[i])
+				small++;
+			else if (a->stack[j] > a->stack[i])
+				big++;
+			j++;
 		}
+		if (distance(small - big) < mid_diff)
+		{
+			mid = i;
+			mid_diff = distance(small - big);
+		}
+		j = 0;
+		i++;
 	}
+	return (mid);
 }
 
 int	chose_pivot_a(t_stack *a, t_stack *sorted)
@@ -145,8 +176,6 @@ int	chose_pivot_a(t_stack *a, t_stack *sorted)
 	int	i;
 
 	i = 0;
-	if (sorted->size == 0)
-		return (a->stack[a->size - 1]);
 	while (i < a->size - 1)
 	{
 		if (!is_it_sorted(a->stack[i], sorted))
@@ -162,8 +191,6 @@ int	chose_pivot_b(t_stack *b, t_stack *sorted)
 	int	i;
 
 	i = 0;
-	if (sorted->size == 0)
-		return (b->stack[b->size - 1]);
 	while (i < b->size - 1)
 	{
 		if (!is_it_sorted(b->stack[i], sorted))

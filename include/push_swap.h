@@ -54,6 +54,8 @@ int		smallest(t_stack *a);
 int		biggest(t_stack *a);
 void	quick_sort(t_stack *a, t_stack *b, int ac);
 void	push_a_stack(t_stack *a, t_stack *b, t_stack *sorted, int pivot);
+int		find_mid(t_stack *a);
+int		distance(int num);
 void	push_b_stack(t_stack *a, t_stack *b, t_stack *sorted, int pivot);
 int		chose_pivot_a(t_stack *a, t_stack *sorted);
 int		chose_pivot_b(t_stack *b, t_stack *sorted);

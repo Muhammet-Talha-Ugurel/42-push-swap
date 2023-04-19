@@ -10,7 +10,7 @@
 #                                                                              #
 #******************************************************************************#
 
-SRCS = ./src/push_swap.c ./src/rules.c ./src/stack_utils.c ./src/opt.c ./src/quick_sort.c
+SRCS = ./src/push_swap.c ./src/rules.c ./src/stack_utils.c ./src/opt.c ./src/quick_sort.c ./src/aec_alg.c
 SRCBS = 
 NAME = push_swap
 CC = gcc

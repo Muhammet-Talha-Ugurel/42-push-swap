@@ -35,6 +35,6 @@ int	main(int ac, char **av)
 	if (ac == 6)
 		five(a, b);
 	if (ac >= 7)
-		quick_sort(a, b, ac);
+		aec_alg(a, b, ac);
 	return (0);
 }

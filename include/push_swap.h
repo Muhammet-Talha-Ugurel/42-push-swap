@@ -62,5 +62,13 @@ int		chose_pivot_b(t_stack *b, t_stack *sorted);
 int		is_it_sorted(int n, t_stack *sorted);
 int		sorted_a(t_stack *a);
 int		sorted_b(t_stack *b);
+void	aec_alg(t_stack *a, t_stack *b, int ac);
+void	count_steps(t_stack *steps, t_stack *a, t_stack *b);
+int		count_steps_one_item(t_stack *a, t_stack *b, int i);
+int		steps_to_move_top(t_stack *a, int i);
+int		find_the_spot(t_stack *b, int a);
+int		find_smallest(t_stack *b);
+int		find_biggest(t_stack *b);
+void	send_it(t_stack *a, t_stack *b, int o);
 
 #endif

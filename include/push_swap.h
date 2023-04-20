@@ -28,6 +28,14 @@ typedef struct t_stack
 	int32_t	size;
 }			t_stack;
 
+typedef struct t_moves
+{
+	int32_t	ar;
+	int32_t	arr;
+	int32_t	br;
+	int32_t	brr;
+}			t_moves;
+
 void	sa(t_stack *a);
 void	sb(t_stack *b);
 void	ss(t_stack *a, t_stack *b);
@@ -52,14 +60,6 @@ void	five_up_smallest(t_stack *a);
 int		check(t_stack *a);
 int		smallest(t_stack *a);
 int		biggest(t_stack *a);
-void	quick_sort(t_stack *a, t_stack *b, int ac);
-void	push_a_stack(t_stack *a, t_stack *b, t_stack *sorted, int pivot);
-int		find_mid(t_stack *a);
-int		distance(int num);
-void	push_b_stack(t_stack *a, t_stack *b, t_stack *sorted, int pivot);
-int		chose_pivot_a(t_stack *a, t_stack *sorted);
-int		chose_pivot_b(t_stack *b, t_stack *sorted);
-int		is_it_sorted(int n, t_stack *sorted);
 int		sorted_a(t_stack *a);
 int		sorted_b(t_stack *b);
 void	aec_alg(t_stack *a, t_stack *b, int ac);
@@ -70,5 +70,8 @@ int		find_the_spot(t_stack *b, int a);
 int		find_smallest(t_stack *b);
 int		find_biggest(t_stack *b);
 void	send_it(t_stack *a, t_stack *b, int o);
+void	make_the_opt_moves(t_stack *a, t_stack *b, t_moves *moves);
+void	moves_init(t_moves *moves);
+int		positive(int num);
 
 #endif

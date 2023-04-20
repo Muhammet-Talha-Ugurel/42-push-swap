@@ -32,7 +32,20 @@ void	aec_alg(t_stack *a, t_stack *b, int ac)
 	{
 		if (sorted_b(b))
 			break ;
-		rb(b);
+		if (b->size % 2 == 0)
+		{
+			if (find_biggest(b) <= (b->size / 2))
+				rb(b);
+			else if (find_biggest(b) > (b->size / 2))
+				rrb(b);
+		}
+		else if (b->size % 2 == 1)
+		{
+			if (find_biggest(b) <= (b->size / 2))
+				rb(b);
+			else if (find_biggest(b) > (b->size / 2))
+				rrb(b);
+		}
 	}
 	while (true)
 	{
@@ -42,12 +55,23 @@ void	aec_alg(t_stack *a, t_stack *b, int ac)
 	}
 }
 
+void	moves_init(t_moves *moves)
+{
+	moves->ar = 0;
+	moves->arr = 0;
+	moves->br = 0;
+	moves->brr = 0;
+}
+
 void	send_it(t_stack *a, t_stack *b, int o)
 {
-	int	ai;
-	int	bi;
-	int	the_number;
+	t_moves	*moves;
+	int			ai;
+	int			bi;
+	int			the_number;
 
+	moves = malloc(sizeof(t_moves));
+	moves_init(moves);
 	the_number = a->stack[o];
 	ai = steps_to_move_top(a, o);
 	while (ai != 0)
@@ -55,16 +79,16 @@ void	send_it(t_stack *a, t_stack *b, int o)
 		if (a->size % 2 == 0)
 		{
 			if (o <= (a->size / 2))
-				ra(a);
+				moves->ar++;
 			else if (o > (a->size / 2))
-				rra(a);
+				moves->arr++;
 		}
 		else if (a->size % 2 == 1)
 		{
 			if (o <= (a->size / 2))
-				ra(a);
+				moves->ar++;
 			else if (o > (a->size / 2))
-				rra(a);
+				moves->arr++;
 		}
 		ai--;
 	}
@@ -75,20 +99,45 @@ void	send_it(t_stack *a, t_stack *b, int o)
 		if (b->size % 2 == 0)
 		{
 			if (o <= (b->size / 2))
-				rb(b);
+				moves->br++;
 			else if (o > (b->size / 2))
-				rrb(b);
+				moves->brr++;
 		}
 		else if (b->size % 2 == 1)
 		{
 			if (o <= (b->size / 2))
-				rb(b);
+				moves->br++;
 			else if (o > (b->size / 2))
-				rrb(b);
+				moves->brr++;
 		}
 		bi--;
 	}
+	make_the_opt_moves(a, b, moves);
 	pb(b, a);
+}
+
+void	make_the_opt_moves(t_stack *a, t_stack *b, t_moves *moves)
+{
+	while (moves->ar > 0 && moves->br > 0)
+	{
+		rr(a, b);
+		moves->ar--;
+		moves->br--;
+	}
+	while (moves->arr > 0 && moves->brr > 0)
+	{
+		rrr(a, b);
+		moves->arr--;
+		moves->brr--;
+	}
+	while (moves->ar-- > 0)
+		ra(a);
+	while (moves->arr-- > 0)
+		rra(a);
+	while (moves->br-- > 0)
+		rb(b);
+	while (moves->brr-- > 0)
+		rrb(b);
 }
 
 void	count_steps(t_stack *steps, t_stack *a, t_stack *b)
@@ -187,4 +236,47 @@ int	find_the_spot(t_stack *b, int a)
 		return (find_biggest(b));
 	}
 	return (biggest_small);
+}
+
+int	sorted_a(t_stack *a)
+{
+	int		i;
+	int		flag;
+
+	i = 0;
+	flag = 0;
+	while (a->size - 2 >= i)
+	{
+		if (a->stack[i] > a->stack[i + 1])
+			flag = 1;
+		i++;
+	}
+	if (flag == 1)
+		return (0);
+	return (1);
+}
+
+int	sorted_b(t_stack *b)
+{
+	int		i;
+	int		flag;
+
+	i = 0;
+	flag = 0;
+	while (b->size - 2 >= i)
+	{
+		if (b->stack[i] < b->stack[i + 1])
+			flag = 1;
+		i++;
+	}
+	if (flag == 1)
+		return (0);
+	return (1);
+}
+
+int	positive(int num)
+{
+	if (num < 0)
+		num = num * -1;
+	return (num);
 }

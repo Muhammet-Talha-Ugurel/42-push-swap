@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   calc_opt.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mugurel <muhammedtalhaugurel@gmai...>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,29 +12,25 @@
 
 #include "push_swap.h"
 
-int	main(int ac, char **av)
+int	find_the_spot(t_stack *b, int a)
 {
-	t_stack	*a;
-	t_stack	*b;
+	int	i;
+	int	biggest_small;
 
-	if (ac == 1)
-		return (0);
-	a = malloc(sizeof(t_stack));
-	b = malloc(sizeof(t_stack));
-	a->size = 0;
-	b->size = 0;
-	a->stack = (int32_t *)malloc(((ac - 1) * sizeof(int32_t)));
-	b->stack = (int32_t *)malloc(((ac - 1) * sizeof(int32_t)));
-	get_them_all(a, av, ac);
-	if (ac == 3)
-		two(a);
-	if (ac == 4)
-		three(a);
-	if (ac == 5)
-		four(a, b);
-	if (ac == 6)
-		five(a, b);
-	if (ac >= 7)
-		mtu_sort(a, b, ac);
-	return (0);
+	i = 0;
+	biggest_small = find_smallest(b);
+	while (b->size > i)
+	{
+		if (b->stack[i] < a)
+		{
+			if (b->stack[i] >= b->stack[biggest_small])
+				biggest_small = i;
+		}
+		i++;
+	}
+	if (a < b->stack[find_smallest(b)])
+	{
+		return (find_biggest(b));
+	}
+	return (biggest_small);
 }

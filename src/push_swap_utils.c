@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_utils.c                                      :+:      :+:    :+:   */
+/*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mugurel <muhammedtalhaugurel@gmai...>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,8 +14,8 @@
 
 void	get_them_all(t_stack *a, char **av, int ac)
 {
-	int	i;
-	
+	int32_t	i;
+
 	a->size = ac - 1;
 	i = 0;
 	while (ac - 1 > i)
@@ -25,51 +25,21 @@ void	get_them_all(t_stack *a, char **av, int ac)
 	}
 }
 
-void	print_stack(t_stack *a)
-{
-	int i;
-
-	i = 0;
-	while (i < a->size)
-	{
-		ft_printf("%d\n", a->stack[i]);
-		i++;
-	}
-}
-
-void	print_stacks(t_stack *a, t_stack *b)
-{
-	int i;
-
-	i = 0;
-	ft_printf("a-----b\n");
-	while (i < a->size || i < b->size)
-	{
-		if (i < a->size && i < b->size)
-			ft_printf("%d-----%d\n", a->stack[i], b->stack[i]);
-		if (i < a->size && i >= b->size)
-			ft_printf("%d----- \n", a->stack[i]);
-		if (i >= a->size && i < b->size)
-			ft_printf(" -----%d\n", b->stack[i]);
-		i++;
-	}
-}
-
 void	move_up(t_stack *s)
 {
-	int	i;
+	int32_t	i;
 
 	i = 0;
 	while (s->size >= i)
 	{
-		s->stack[s->size - i + 1] = s->stack[s->size - i]; 
+		s->stack[s->size - i + 1] = s->stack[s->size - i];
 		i++;
 	}
 }
 
 void	move_down(t_stack *s)
 {
-	int	i;
+	int32_t	i;
 
 	i = 0;
 	while (s->size > i)
@@ -81,9 +51,9 @@ void	move_down(t_stack *s)
 
 int	smallest(t_stack *a)
 {
-	int		i;
-	int		index;
-	int		fornow;
+	int32_t	i;
+	int32_t	index;
+	int32_t	fornow;
 
 	i = 1;
 	index = 0;
@@ -102,9 +72,9 @@ int	smallest(t_stack *a)
 
 int	biggest(t_stack *a)
 {
-	int		i;
-	int		index;
-	int		fornow;
+	int32_t	i;
+	int32_t	index;
+	int32_t	fornow;
 
 	i = 1;
 	index = a->size - 1;
@@ -119,22 +89,4 @@ int	biggest(t_stack *a)
 		i++;
 	}
 	return (index);
-}
-
-int	check(t_stack *a)
-{
-	int		i;
-	int		flag;
-
-	i = 0;
-	flag = 0;
-	while (a->size - 2 >= i)
-	{
-		if (a->stack[i] > a->stack[i + 1])
-			flag = 1;
-		i++;
-	}
-	if (flag == 1)
-		return (0);
-	exit (1);
 }

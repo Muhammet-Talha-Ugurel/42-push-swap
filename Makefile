@@ -21,9 +21,18 @@ SRCS =	./src/push_swap.c					\
 				./src/calc_opt.c					\
 				./src/calc_opt2.c					\
 				./src/mtu_sort.c					\
-				./src/mtu_sort1.c
-SRCBS = 
+				./src/mtu_sort1.c					\
+				./src/error_check.c
+
+SRCBS = ./srcb/checker.c					\
+				./srcb/checker_utils.c		\
+				./src/rules.c							\
+				./src/rules1.c						\
+				./src/rules2.c						\
+				./src/error_check.c
+
 NAME = push_swap
+NAME_BONUS = checker
 CC = gcc
 CFLAGS =  -g -Wall -Wextra -Werror
 LFLAGS = -I./include/ -I./lib/get_next_line_lib/include/ -I./lib/ft_printf/includes/ -I./lib/libft/
@@ -39,7 +48,7 @@ $(NAME): $(SRCS) $(FT_PRINTF) $(GET_NEXT_LINE) $(LIBFT)
 	@gcc $(CFLAGS) $(LFLAGS) $(SRCS) $(LIBFT) $(FT_PRINTF) $(GET_NEXT_LINE) -o $(NAME)
 
 bonus : $(SRCBS) $(FT_PRINTF) $(GET_NEXT_LINE) $(LIBFT) 
-	@gcc $(CFLAGS) $(LFLAGS) $(SRCBS) $(LIBFT) $(FT_PRINTF) $(GET_NEXT_LINE) -o $(NAME)
+	@gcc $(CFLAGS) $(LFLAGS) $(SRCBS) $(LIBFT) $(FT_PRINTF) $(GET_NEXT_LINE) -o $(NAME_BONUS)
 
 $(FT_PRINTF):
 	@make -C ./lib/ft_printf

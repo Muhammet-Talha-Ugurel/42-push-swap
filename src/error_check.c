@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   error_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mugurel <muhammedtalhaugurel@gmai...>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,29 +12,47 @@
 
 #include "push_swap.h"
 
-int	main(int ac, char **av)
+void	check_args(char **av, int ac)
 {
-	t_stack	*a;
-	t_stack	*b;
+	is_all_num(av, ac);
+}
 
-	if (ac == 1)
-		return (0);
-	a = malloc(sizeof(t_stack));
-	b = malloc(sizeof(t_stack));
-	a->size = 0;
-	b->size = 0;
-	a->stack = (int32_t *)malloc(((ac - 1) * sizeof(int32_t)));
-	b->stack = (int32_t *)malloc(((ac - 1) * sizeof(int32_t)));
-	ac = get_them_all(a, av, ac);
-	if (ac == 2)
-		two(a);
-	if (ac == 3)
-		three(a);
-	if (ac == 4)
-		four(a, b);
-	if (ac == 5)
-		five(a, b);
-	if (ac >= 6)
-		mtu_sort(a, b, ac);
-	return (0);
+void	is_all_num(char **av, int ac)
+{
+	int32_t	i;
+	int32_t	j;
+
+	i = 1;
+	j = 0;
+	while (ac > i)
+	{
+		while (av[i][j])
+		{
+			if (av[i][j] != ' ')
+				if (!ft_isdigit(av[i][j]))
+					handle_error("Error!!!\n");
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+}
+
+void	check_dup(t_stack *a, int32_t num)
+{
+	int32_t	i;
+
+	i = 0;
+	while (a->size > i)
+	{
+		if (a->stack[i] == num)
+			handle_error("Error!!!\n");
+		i++;
+	}
+}
+
+void	handle_error(char *str)
+{
+	ft_putstr_fd(str, 2);
+	exit(1);
 }

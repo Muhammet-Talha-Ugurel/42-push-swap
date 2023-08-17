@@ -35,8 +35,7 @@ NAME = push_swap
 NAME_BONUS = checker
 CC = gcc
 CFLAGS =  -g -Wall -Wextra -Werror
-LFLAGS = -I./include/ -I./lib/get_next_line_lib/include/ -I./lib/ft_printf/includes/ -I./lib/libft/
-LIBFT = ./lib/libft/libft.a
+LFLAGS = -I./include/ -I./lib/get_next_line_lib/include/ -I./lib/ft_printf/includes/
 FT_PRINTF = ./lib/ft_printf/libftprintf.a
 GET_NEXT_LINE = ./lib/get_next_line_lib/get_next_line.a
 RM = rm -rf
@@ -44,11 +43,11 @@ LIBC = ar -rcs
 
 all: ${NAME}
 
-$(NAME): $(SRCS) $(FT_PRINTF) $(GET_NEXT_LINE) $(LIBFT)
-	@gcc $(CFLAGS) $(LFLAGS) $(SRCS) $(LIBFT) $(FT_PRINTF) $(GET_NEXT_LINE) -o $(NAME)
+$(NAME): $(SRCS) $(FT_PRINTF) $(GET_NEXT_LINE)
+	@gcc $(CFLAGS) $(LFLAGS) $(SRCS) $(FT_PRINTF) $(GET_NEXT_LINE) -o $(NAME)
 
-bonus : $(SRCBS) $(FT_PRINTF) $(GET_NEXT_LINE) $(LIBFT) 
-	@gcc $(CFLAGS) $(LFLAGS) $(SRCBS) $(LIBFT) $(FT_PRINTF) $(GET_NEXT_LINE) -o $(NAME_BONUS)
+bonus : $(SRCBS) $(FT_PRINTF) $(GET_NEXT_LINE)  
+	@gcc $(CFLAGS) $(LFLAGS) $(SRCBS) $(FT_PRINTF) $(GET_NEXT_LINE) -o $(NAME_BONUS)
 
 $(FT_PRINTF):
 	@make -C ./lib/ft_printf
@@ -56,16 +55,12 @@ $(FT_PRINTF):
 $(GET_NEXT_LINE):
 	@make -C ./lib/get_next_line_lib
 
-$(LIBFT):
-	@make -C ./lib/libft
-
 clean:
 
 fclean: clean
 	@rm -rf $(NAME)
 	@make fclean -C ./lib/ft_printf
 	@make fclean -C ./lib/get_next_line_lib
-	@make fclean -C ./lib/libft
 
 re: fclean all
 

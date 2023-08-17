@@ -24,6 +24,8 @@ void	mtu_sort(t_stack *a, t_stack *b, int ac)
 	sorting_loop(a, b, steps);
 	rotating_loop(b);
 	push_all(a, b);
+	free(steps->stack);
+	free(steps);
 }
 
 void	sorting_loop(t_stack *a, t_stack *b, t_stack *steps)

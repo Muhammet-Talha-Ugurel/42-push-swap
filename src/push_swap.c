@@ -36,5 +36,9 @@ int	main(int ac, char **av)
 		five(a, b);
 	if (ac >= 6)
 		mtu_sort(a, b, ac);
+	free(a->stack);
+	free(b->stack);
+	free(a);
+	free(b);
 	return (0);
 }

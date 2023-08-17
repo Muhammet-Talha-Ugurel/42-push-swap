@@ -56,6 +56,7 @@ void	four(t_stack *a, t_stack *b)
 	else if (smallest(a) == 2)
 	{
 		rra(a);
+		rra(a);
 		check(a);
 	}
 	else if (smallest(a) == 3)

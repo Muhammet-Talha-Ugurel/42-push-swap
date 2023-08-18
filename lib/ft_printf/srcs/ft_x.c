@@ -85,7 +85,7 @@ void	hex_len(unsigned int nbr, char *base, int *nlen)
 	basel = 0;
 	if (n < 0)
 	{
-		ft_putchar('-');
+		ft_putchar_fd('-', 1);
 		n *= -1;
 	}
 	while (base[basel] != '\0')

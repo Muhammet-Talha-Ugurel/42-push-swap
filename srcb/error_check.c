@@ -56,3 +56,11 @@ void	handle_error(char *str)
 	ft_putstr_fd(str, 2);
 	exit(1);
 }
+
+void	alocate_stack(t_stack *a, t_stack *b, char **av, int ac)
+{
+	a->size = 0;
+	b->size = 0;
+	a->stack = (int32_t *)malloc(((count_args(av, ac)) * sizeof(int32_t)));
+	b->stack = (int32_t *)malloc(((count_args(av, ac)) * sizeof(int32_t)));
+}

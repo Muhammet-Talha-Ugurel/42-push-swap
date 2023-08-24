@@ -37,6 +37,7 @@ void	rr(t_stack *a, t_stack *b);
 void	rra(t_stack *a);
 void	rrb(t_stack *b);
 void	rrr(t_stack *a, t_stack *b);
+void	is_all_num(char **av, int ac);
 int		get_them_all(t_stack *a, char **av, int ac);
 void	move_up(t_stack *s);
 void	move_down(t_stack *s);
@@ -44,5 +45,9 @@ void	check_args(char **av, int ac);
 void	handle_error(char *str);
 void	check_dup(t_stack *a, int32_t num);
 int		sorted_a(t_stack *a);
+int		count_args(char **av, int ac);
+void	free_all(t_stack *a, t_stack *b);
+void	compare(char *str, t_stack *a, t_stack *b);
+void	alocate_stack(t_stack *a, t_stack *b, char **av, int ac);
 
 #endif

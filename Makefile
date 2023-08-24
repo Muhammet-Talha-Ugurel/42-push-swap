@@ -26,10 +26,10 @@ SRCS =	./src/push_swap.c					\
 
 SRCBS = ./srcb/checker.c					\
 				./srcb/checker_utils.c		\
-				./src/rules.c							\
-				./src/rules1.c						\
-				./src/rules2.c						\
-				./src/error_check.c
+				./srcb/rules.c							\
+				./srcb/rules1.c						\
+				./srcb/rules2.c						\
+				./srcb/error_check.c
 
 NAME = push_swap
 NAME_BONUS = checker
@@ -59,6 +59,7 @@ clean:
 
 fclean: clean
 	@rm -rf $(NAME)
+	@rm -rf $(NAME_BONUS)
 	@make fclean -C ./lib/ft_printf
 	@make fclean -C ./lib/get_next_line_lib
 

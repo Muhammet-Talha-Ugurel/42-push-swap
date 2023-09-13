@@ -111,5 +111,7 @@ void	compare(char *str, t_stack *a, t_stack *b)
 		rb(b);
 	else if (!ft_strncmp("rr", str, 2))
 		rr(a, b);
+	else
+		handle_error("Fail\n");
 	free(str);
 }

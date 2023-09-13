@@ -22,7 +22,6 @@ void	sa(t_stack *a)
 		a->stack[0] = a->stack[1];
 		a->stack[1] = temp;
 	}
-	ft_printf("sa\n");
 }
 
 void	sb(t_stack *b)
@@ -35,7 +34,6 @@ void	sb(t_stack *b)
 		b->stack[0] = b->stack[1];
 		b->stack[1] = temp;
 	}
-	ft_printf("sb\n");
 }
 
 void	ss(t_stack *a, t_stack *b)
@@ -54,7 +52,6 @@ void	ss(t_stack *a, t_stack *b)
 		b->stack[0] = b->stack[1];
 		b->stack[1] = temp;
 	}
-	ft_printf("ss\n");
 }
 
 void	pa(t_stack *a, t_stack *b)
@@ -67,7 +64,6 @@ void	pa(t_stack *a, t_stack *b)
 		move_down(b);
 		b->size = b->size - 1;
 	}
-	ft_printf("pa\n");
 }
 
 void	pb(t_stack *b, t_stack *a)
@@ -80,5 +76,4 @@ void	pb(t_stack *b, t_stack *a)
 		move_down(a);
 		a->size = a->size - 1;
 	}
-	ft_printf("pb\n");
 }

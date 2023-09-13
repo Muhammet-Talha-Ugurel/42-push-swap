@@ -28,5 +28,4 @@ void	rrr(t_stack *a, t_stack *b)
 		move_up(b);
 		b->stack[0] = temp;
 	}
-	ft_printf("rrr\n");
 }

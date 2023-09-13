@@ -32,9 +32,9 @@ int	main(int ac, char **av)
 		compare(str, a, b);
 	}
 	if (sorted_a(a) && b->size == 0)
-		ft_printf("Success\n");
+		ft_printf("OK\n");
 	else
-		ft_printf("Fail\n");
+		ft_printf("KO\n");
 	free_all(a, b);
 }
 
@@ -112,6 +112,6 @@ void	compare(char *str, t_stack *a, t_stack *b)
 	else if (!ft_strncmp("rr", str, 2))
 		rr(a, b);
 	else
-		handle_error("Fail\n");
+		handle_error("Error!\n");
 	free(str);
 }

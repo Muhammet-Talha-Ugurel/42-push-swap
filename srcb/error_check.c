@@ -30,7 +30,7 @@ void	is_all_num(char **av, int ac)
 		{
 			if (av[i][j] != ' ')
 				if (!ft_isdigit(av[i][j]) && av[i][j] != '-')
-					handle_error("Error!!!\n");
+					handle_error("Error!\n");
 			j++;
 		}
 		j = 0;
@@ -46,7 +46,7 @@ void	check_dup(t_stack *a, int32_t num)
 	while (a->size > i)
 	{
 		if (a->stack[i] == num)
-			handle_error("Error!!!\n");
+			handle_error("Error!\n");
 		i++;
 	}
 }

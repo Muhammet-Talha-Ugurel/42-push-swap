@@ -50,6 +50,6 @@ long long	push_atoi(const char *nptr)
 	}
 	nb *= mult;
 	if (nb > 2147483647 || nb < -2147483648)
-		handle_error("Error!!!\n");
+		handle_error("Error!\n");
 	return (nb);
 }

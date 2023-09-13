@@ -27,16 +27,14 @@ int	main(int ac, char **av)
 	while (true)
 	{
 		str = get_next_line(0);
-		if (sorted_a(a) && b->size == 0)
-			ft_printf("Success\n");
-		if (sorted_a(a) && b->size == 0)
-			break ;
-		if (str == NULL)
-			ft_printf("Fail\n");
 		if (str == NULL)
 			break ;
 		compare(str, a, b);
 	}
+	if (sorted_a(a) && b->size == 0)
+		ft_printf("Success\n");
+	else
+		ft_printf("Fail\n");
 	free_all(a, b);
 }
 

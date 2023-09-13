@@ -30,7 +30,7 @@ SRCBS = ./srcb/checker.c					\
 				./srcb/rules.c							\
 				./srcb/rules1.c						\
 				./srcb/rules2.c						\
-				./src/push_atoi_bonus.c					\
+				./srcb/push_atoi_bonus.c					\
 				./srcb/error_check.c
 
 NAME = push_swap

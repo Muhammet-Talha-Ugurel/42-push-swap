@@ -51,12 +51,12 @@ void	send_it_a(t_stack *a, t_moves *moves, int32_t o)
 	}
 }
 
-void	send_it_b(t_stack *b, t_moves *moves, int32_t o, int32_t the_number)
+void	send_it_b(t_stack *b, t_moves *moves, int32_t o, int32_t the)
 {
 	int32_t	bi;
 
-	bi = steps_to_move_top(b, find_the_spot(b, the_number));
-	o = find_the_spot(b, the_number);
+	bi = steps_to_move_top(b, find_the_spot(b, the));
+	o = find_the_spot(b, the);
 	while (bi != 0)
 	{
 		if (b->size % 2 == 0)

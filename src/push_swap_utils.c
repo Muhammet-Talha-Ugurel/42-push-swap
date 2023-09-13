@@ -32,8 +32,8 @@ int	get_them_all(t_stack *a, char **av, int ac)
 	i = 0;
 	while (split[i])
 	{
-		check_dup(a, ft_atoi(split[i]));
-		a->stack[i] = ft_atoi(split[i]);
+		check_dup(a, push_atoi(split[i]));
+		a->stack[i] = push_atoi(split[i]);
 		i++;
 		a->size++;
 	}

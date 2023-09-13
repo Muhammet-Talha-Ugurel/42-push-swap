@@ -22,6 +22,7 @@ SRCS =	./src/push_swap.c					\
 				./src/calc_opt2.c					\
 				./src/mtu_sort.c					\
 				./src/mtu_sort1.c					\
+				./src/push_atoi.c					\
 				./src/error_check.c
 
 SRCBS = ./srcb/checker.c					\
@@ -29,6 +30,7 @@ SRCBS = ./srcb/checker.c					\
 				./srcb/rules.c							\
 				./srcb/rules1.c						\
 				./srcb/rules2.c						\
+				./src/push_atoi_bonus.c					\
 				./srcb/error_check.c
 
 NAME = push_swap

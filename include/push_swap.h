@@ -46,6 +46,7 @@ void	rra(t_stack *a);
 void	rrb(t_stack *b);
 void	rrr(t_stack *a, t_stack *b);
 int		get_them_all(t_stack *a, char **av, int ac);
+long long	push_atoi(const char *nptr);
 void	move_up(t_stack *s);
 void	move_down(t_stack *s);
 void	two(t_stack *a);

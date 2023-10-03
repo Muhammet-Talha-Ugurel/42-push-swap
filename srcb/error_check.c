@@ -29,8 +29,13 @@ void	is_all_num(char **av, int ac)
 		while (av[i][j])
 		{
 			if (av[i][j] != ' ')
-				if (!ft_isdigit(av[i][j]) && av[i][j] != '-')
-					handle_error("Error!\n");
+			{
+				if (!ft_isdigit(av[i][j]) && av[i][j] != '+' && av[i][j] != '-')
+					handle_error("Error!!!\n");
+				if (av[i][j] == '+' || av[i][j] == '-')
+					if (!ft_isdigit(av[i][j + 1]))
+						handle_error("Error!!!\n");
+			}
 			j++;
 		}
 		j = 0;
